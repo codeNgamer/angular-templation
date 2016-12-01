@@ -2,7 +2,7 @@
   "name": "angular-templation",
   "version": "0.0.1",
   "description": "angular directive for rendering components with template variants",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
     "lite": "lite-server",
