@@ -4,10 +4,9 @@
   "description": "angular directive for rendering components with template variants",
   "main": "src/index.js",
   "scripts": {
-    "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
+    "start": "tsc",
     "lite": "lite-server",
-    "tsc": "tsc",
-    "test": "npm test"
+    "tsc": "tsc"
   },
   "keywords": [
     "angular",
