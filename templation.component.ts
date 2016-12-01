@@ -36,8 +36,7 @@ export class TemplationComponent {
     this.compiler.compileModuleAndAllComponentsAsync(templationModule)
     .then(factory => {
       const compFactory = factory.componentFactories.find(x => x.componentType === templatedComponent);
-      const cmpRef = this.vr.createComponent(compFactory, 0);
-      console.log(cmpRef);
+      const cmpRef = this.vr.createComponent(compFactory);
     })
   }
 
