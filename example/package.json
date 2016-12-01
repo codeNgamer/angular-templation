@@ -1,21 +1,14 @@
 {
-  "name": "angular-templation",
-  "version": "0.0.1",
-  "description": "angular directive for rendering components with template variants",
+  "name": "example",
+  "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
     "lite": "lite-server",
-    "tsc": "tsc",
-    "test": "npm test"
+    "tsc": "tsc"
   },
-  "keywords": [
-    "angular",
-    "template",
-    "dynamic",
-    "templates"
-  ],
-  "author": "codengamer",
+  "author": "",
   "dependencies": {
     "@angular/common": "~2.2.0",
     "@angular/compiler": "~2.2.0",
@@ -39,6 +32,7 @@
     "typescript": "^2.0.10",
 
     "canonical-path": "0.0.2",
+    "http-server": "^0.9.0",
     "tslint": "^3.15.1",
     "lodash": "^4.16.4",
     "rimraf": "^2.5.4",
@@ -47,5 +41,5 @@
     "@types/jasmine": "^2.5.36",
     "@types/selenium-webdriver": "^2.53.33"
   },
-  "license": "MIT"
+  "license": "ISC"
 }
