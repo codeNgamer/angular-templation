@@ -9,7 +9,6 @@ import {
 } from '@angular/core';
 
 import { CommonModule }   from '@angular/common';
-import * as _ from 'lodash';
 
 @Component({
   selector: 'templation',

@@ -6,7 +6,6 @@
   "scripts": {
     "start": "tsc",
     "lite": "lite-server",
-    "prepublish": "tsc",
     "tsc": "tsc"
   },
   "keywords": [
