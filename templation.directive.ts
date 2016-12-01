@@ -19,31 +19,5 @@ export class TemplationDirective {
     private compiler: Compiler
   ) {
   }
-
-  ngAfterViewInit() {
-    console.log(this.vcRef);
-    // console.log(this.vcRef);
-    // console.log(this.templation);
-
-    // console.log('end');
-
-    // this.renderView();
-  }
-
-  componentInit(e) {
-    console.log(e);
-
-  }
-
-  ngOnChanges() {
-    this.renderView();
-  }
-
-  renderView() {
-    // always use current template path
-    // this.templatePath;
-
-    //need reference to host component
-  }
 }
 
