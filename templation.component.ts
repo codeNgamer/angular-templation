@@ -10,7 +10,6 @@ import {
 } from '@angular/core';
 
 import { CommonModule }   from '@angular/common';
-import _ from 'underscore';
 
 @Component({
   selector: 'templation',
@@ -31,7 +30,7 @@ export class TemplationComponent {
   }
 
   renderComponent() {
-    const hasTemplate = this.templateUrl || this.template;
+    const hasTemplate =  !!this.template;
     if (!this.component || !hasTemplate) return false;
     const templatedComponent = this.returnTemplatedComponent();
     const templationModule = this.returnTemplationModule({ templatedComponent });
@@ -64,9 +63,8 @@ export class TemplationComponent {
 
     const componentMeta = { 
       selector: 'templatedComponent',
+      template: this.template,
     };
-    const templateType = this.templateUrl ? 'templateUrl' : 'template';
-    componentMeta[templateType] = (templateType === 'templateUrl') ? this.templateUrl : this.template;
 
     @Component(componentMeta)
     class TemplatedComponent extends this.component {
