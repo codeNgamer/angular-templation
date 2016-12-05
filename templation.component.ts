@@ -10,7 +10,6 @@ import {
 } from '@angular/core';
 
 import { CommonModule }   from '@angular/common';
-import _ from 'underscore';
 
 @Component({
   selector: 'templation',
