@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 
 import { CommonModule }   from '@angular/common';
+import _ from 'underscore';
 
 @Component({
   selector: 'templation',
@@ -30,18 +31,23 @@ export class TemplationComponent {
   }
 
   renderComponent() {
-    const hasTemplate = this.templatePath || this.template;
+    const hasTemplate = this.templateUrl || this.template;
     if (!this.component || !hasTemplate) return false;
     const templatedComponent = this.returnTemplatedComponent();
+    console.log(new templatedComponent());
     const templationModule = this.returnTemplationModule({ templatedComponent });
 
     this.compiler.compileModuleAndAllComponentsAsync(templationModule)
     .then(factory => {
       const compFactory = factory.componentFactories.find(x => x.componentType === templatedComponent);
-      const cmpRef = this.vr.createComponent(compFactory);
+
+    console.log(compFactory);
+      const cmpRef = this.vr.createComponent(compFactory, 0);
     })
   }
 
+  // will be used to get dependecies from constructor of
+  // parent class
   private getDeps(func) {
     // First match everything inside the function argument parens.
     const args = func.toString().match(/function\s.*?\(([^)]*)\)/)[1];
@@ -62,13 +68,16 @@ export class TemplationComponent {
     const componentMeta = { 
       selector: 'templatedComponent',
     };
-    const templateType = this.templatePath ? 'templateUrl' : 'template';
-    componentMeta[templateType] = (templateType === 'templateUrl') ? this.templatePath : this.template;
+    const templateType = this.templateUrl ? 'templateUrl' : 'template';
+    componentMeta[templateType] = (templateType === 'templateUrl') ? this.templateUrl : this.template;
+
     @Component(componentMeta)
     class TemplatedComponent extends this.component {
-      constructor() {
+      constructor() { 
+        console.log('child constructor');
       }
     }
+
     return TemplatedComponent;
   }
 
