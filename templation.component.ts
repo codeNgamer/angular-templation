@@ -34,14 +34,11 @@ export class TemplationComponent {
     const hasTemplate = this.templateUrl || this.template;
     if (!this.component || !hasTemplate) return false;
     const templatedComponent = this.returnTemplatedComponent();
-    console.log(new templatedComponent());
     const templationModule = this.returnTemplationModule({ templatedComponent });
 
     this.compiler.compileModuleAndAllComponentsAsync(templationModule)
     .then(factory => {
       const compFactory = factory.componentFactories.find(x => x.componentType === templatedComponent);
-
-    console.log(compFactory);
       const cmpRef = this.vr.createComponent(compFactory, 0);
     })
   }
@@ -73,9 +70,7 @@ export class TemplationComponent {
 
     @Component(componentMeta)
     class TemplatedComponent extends this.component {
-      constructor() { 
-        console.log('child constructor');
-      }
+      constructor() { }
     }
 
     return TemplatedComponent;
