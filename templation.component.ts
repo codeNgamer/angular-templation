@@ -10,13 +10,14 @@ import {
 } from '@angular/core';
 
 import { CommonModule }   from '@angular/common';
+import _ from 'underscore';
 
 @Component({
   selector: 'templation',
   template: `<div></div>`
 })
 export class TemplationComponent {
-  @Input() templatePath: string = null;
+  @Input() imports: [] = null;
   @Input() template: string = null;
   @Input() component: any;
   constructor(
@@ -76,8 +77,9 @@ export class TemplationComponent {
   }
 
   returnTemplationModule({ templatedComponent }) {
+    const dynamicImports = this.imports;
     @NgModule({ 
-      imports: [CommonModule],
+      imports: dynamicImports,
       declarations: [templatedComponent]
     })
     class TemplationModule {}
