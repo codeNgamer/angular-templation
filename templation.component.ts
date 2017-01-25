@@ -10,7 +10,6 @@ import {
 } from '@angular/core';
 
 import { CommonModule }   from '@angular/common';
-import * as _ from 'lodash';
 
 @Component({
   selector: 'templation',
@@ -75,8 +74,8 @@ export class TemplationComponent {
     }
 
     const componentInstance = new this.component(diParams);
-    const componentKeys = _.keys(componentInstance);
-    _.map(componentKeys, key =>  TemplatedComponent[key] = componentInstance[key]);
+    const componentKeys = Object.keys(componentInstance);
+    componentKeys.map(key =>  TemplatedComponent[key] = componentInstance[key]);
 
     return TemplatedComponent;
   }
