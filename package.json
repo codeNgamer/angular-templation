@@ -1,6 +1,6 @@
 {
   "name": "angular-templation",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "angular directive for rendering components with template variants",
   "main": "src/index.js",
   "scripts": {
@@ -25,6 +25,7 @@
     "@angular/platform-browser": "~2.2.0",
     "@angular/platform-browser-dynamic": "~2.2.0",
     "@angular/router": "~3.2.0",
+    "@types/lodash": "^4.14.50",
     "angular-in-memory-web-api": "~0.1.15",
     "core-js": "^2.4.1",
     "lodash": "^4.17.4",
