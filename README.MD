@@ -1,27 +1,8 @@
-# Angular-Templation
-Anglar 2 module that enables angular components take on multiple templates
+# angular-templation
 
-## Install
-> npm install --save angular-templation
+> angular directive for rendering components with template variants
 
-## Usage
-
-* in app.module.ts
-```javascript
-import { TemplationModule } from 'angular-templation';
-@NgModule({
-imports: [..., TemplationModule],
-declarations: [AppComponent],
-bootstrap: [AppComponent]
-})
-export class AppModule {}
-```
-
-* use templation component and supply component and template/templateUrl
-```javascript
-<div>
-<templation [component]="testComponent" [template]="template1" ></templation>
-<templation [component]="testComponent" [templateUrl]="path/to/template2" ></templation>
-</div>
-```
+## License
+Copyright (c) 2016 codengamer, contributors.
+Released under the  license
 

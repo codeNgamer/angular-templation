@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 
 import { CommonModule }   from '@angular/common';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'templation',
@@ -23,7 +24,7 @@ export class TemplationComponent {
     private vr: ViewContainerRef,
     private cfr: ComponentFactoryResolver,
     private compiler: Compiler 
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.renderComponent();
@@ -39,7 +40,7 @@ export class TemplationComponent {
     .then(factory => {
       const compFactory = factory.componentFactories.find(x => x.componentType === templatedComponent);
       const cmpRef = this.vr.createComponent(compFactory, 0);
-    })
+    });
   }
 
   // will be used to get dependecies from constructor of
@@ -68,8 +69,16 @@ export class TemplationComponent {
 
     @Component(componentMeta)
     class TemplatedComponent extends this.component {
-      constructor() { }
+      constructor() { 
+        super(diParams);
+      }
     }
+
+    const componentInstance = new this.component(diParams);
+    const componentKeys = _.keys(componentInstance);
+    _.map(componentKeys, key =>  TemplatedComponent[key] = componentInstance[key]);
+
+    console.log('done');
 
     return TemplatedComponent;
   }

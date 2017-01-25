@@ -17,9 +17,18 @@ import {
 })
 export class TestComponent {
   private hostprop = 'clicked it';
+  public someValue = 1;
 
   clicked() {
     console.log(this.hostprop);
+  }
+
+  ngOnInit() {
+    const outerScope = this;
+    setInterval(function(){
+      outerScope.someValue++;
+      console.log(outerScope.someValue);
+    }, 3000);
   }
 }
 
@@ -32,6 +41,6 @@ export class TestComponent {
 })
 export class AppComponent {
   private testComponent = TestComponent;
-  private template1 = `<p (click)="clicked()">the new template</p>`;
+  private template1 = `<p (click)="clicked()">the new template1{{someValue}}</p>`;
   private template2 = `<p (click)="clicked()">the newer template</p>`;
 }

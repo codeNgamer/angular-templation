@@ -12,9 +12,17 @@ var core_1 = require('@angular/core');
 var TestComponent = (function () {
     function TestComponent() {
         this.hostprop = 'clicked it';
+        this.someValue = 1;
     }
     TestComponent.prototype.clicked = function () {
         console.log(this.hostprop);
+    };
+    TestComponent.prototype.ngOnInit = function () {
+        var outerScope = this;
+        setInterval(function () {
+            outerScope.someValue++;
+            console.log(outerScope.someValue);
+        }, 3000);
     };
     TestComponent = __decorate([
         core_1.Component({
@@ -29,7 +37,7 @@ exports.TestComponent = TestComponent;
 var AppComponent = (function () {
     function AppComponent() {
         this.testComponent = TestComponent;
-        this.template1 = "<p (click)=\"clicked()\">the new template</p>";
+        this.template1 = "<p (click)=\"clicked()\">the new template1{{someValue}}</p>";
         this.template2 = "<p (click)=\"clicked()\">the newer template</p>";
     }
     AppComponent = __decorate([
