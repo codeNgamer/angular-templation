@@ -78,8 +78,6 @@ export class TemplationComponent {
     const componentKeys = _.keys(componentInstance);
     _.map(componentKeys, key =>  TemplatedComponent[key] = componentInstance[key]);
 
-    console.log('done');
-
     return TemplatedComponent;
   }
 
