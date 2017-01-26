@@ -19,6 +19,10 @@ export class TestComponent {
   private hostprop = 'clicked it';
   public someValue = 1;
 
+  constructor(some: string='something') {
+    console.log(some);
+  }
+
   clicked() {
     console.log(this.hostprop);
   }
@@ -27,7 +31,6 @@ export class TestComponent {
     const outerScope = this;
     setInterval(function(){
       outerScope.someValue++;
-      console.log(outerScope.someValue);
     }, 3000);
   }
 }

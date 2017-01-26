@@ -10,9 +10,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var TestComponent = (function () {
-    function TestComponent() {
+    function TestComponent(some) {
+        if (some === void 0) { some = 'something'; }
         this.hostprop = 'clicked it';
         this.someValue = 1;
+        console.log(some);
     }
     TestComponent.prototype.clicked = function () {
         console.log(this.hostprop);
@@ -21,7 +23,6 @@ var TestComponent = (function () {
         var outerScope = this;
         setInterval(function () {
             outerScope.someValue++;
-            console.log(outerScope.someValue);
         }, 3000);
     };
     TestComponent = __decorate([
@@ -29,7 +30,7 @@ var TestComponent = (function () {
             selector: 'test',
             template: "<div>\n  <p>test component</p>\n  </div>"
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [String])
     ], TestComponent);
     return TestComponent;
 }());

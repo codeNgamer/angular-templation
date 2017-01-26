@@ -58,7 +58,7 @@ export class TemplationComponent {
   }
 
   returnTemplatedComponent() {
-    const componentDeps = this.getDeps(this.component.constructor);
+    const componentDeps = this.getDeps(this.component);
     const diParams = componentDeps.map(dep => this.component[dep]);
 
     const componentMeta = { 
