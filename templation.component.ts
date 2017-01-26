@@ -69,7 +69,7 @@ export class TemplationComponent {
     @Component(componentMeta)
     class TemplatedComponent extends this.component {
       constructor() { 
-        super(diParams);
+        // super(diParams);
       }
     }
 
