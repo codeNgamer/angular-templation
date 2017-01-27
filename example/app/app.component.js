@@ -10,14 +10,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var TestComponent = (function () {
-    function TestComponent(some) {
-        if (some === void 0) { some = 'something'; }
+    function TestComponent(vcRef) {
+        this.vcRef = vcRef;
         this.hostprop = 'clicked it';
         this.someValue = 1;
-        console.log(some);
+        console.log(this.vcRef);
     }
     TestComponent.prototype.clicked = function () {
         console.log(this.hostprop);
+        console.log(this.vcRef);
     };
     TestComponent.prototype.ngOnInit = function () {
         var outerScope = this;
@@ -30,7 +31,7 @@ var TestComponent = (function () {
             selector: 'test',
             template: "<div>\n  <p>test component</p>\n  </div>"
         }), 
-        __metadata('design:paramtypes', [String])
+        __metadata('design:paramtypes', [core_1.ViewContainerRef])
     ], TestComponent);
     return TestComponent;
 }());
@@ -38,13 +39,14 @@ exports.TestComponent = TestComponent;
 var AppComponent = (function () {
     function AppComponent() {
         this.testComponent = TestComponent;
+        this.componentProviders = [core_1.ViewContainerRef];
         this.template1 = "<p (click)=\"clicked()\">the new template1{{someValue}}</p>";
         this.template2 = "<p (click)=\"clicked()\">the newer template</p>";
     }
     AppComponent = __decorate([
         core_1.Component({
             selector: 'app',
-            template: "<div>\n  <templation [component]=\"testComponent\" [template]=\"template1\" ></templation>\n  <templation [component]=\"testComponent\" [template]=\"template2\" ></templation>\n  </div>"
+            template: "<div>\n  <templation [component]=\"testComponent\" [providers]=\"componentProviders\" [template]=\"template1\" ></templation>\n  <templation [component]=\"testComponent\" [providers]=\"componentProviders\" [template]=\"template2\" ></templation>\n  </div>"
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

@@ -19,12 +19,15 @@ export class TestComponent {
   private hostprop = 'clicked it';
   public someValue = 1;
 
-  constructor(some: string='something') {
-    console.log(some);
+  constructor(
+    private vcRef: ViewContainerRef,
+  ) {
+    console.log(this.vcRef);
   }
 
   clicked() {
     console.log(this.hostprop);
+    console.log(this.vcRef);
   }
 
   ngOnInit() {
@@ -38,12 +41,13 @@ export class TestComponent {
 @Component({
   selector: 'app',
   template: `<div>
-  <templation [component]="testComponent" [template]="template1" ></templation>
-  <templation [component]="testComponent" [template]="template2" ></templation>
+  <templation [component]="testComponent" [providers]="componentProviders" [template]="template1" ></templation>
+  <templation [component]="testComponent" [providers]="componentProviders" [template]="template2" ></templation>
   </div>` 
 })
 export class AppComponent {
   private testComponent = TestComponent;
+  private componentProviders = [ViewContainerRef];
   private template1 = `<p (click)="clicked()">the new template1{{someValue}}</p>`;
   private template2 = `<p (click)="clicked()">the newer template</p>`;
 }
