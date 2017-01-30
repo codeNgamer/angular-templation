@@ -65,7 +65,11 @@ export class TemplationComponent {
     const deps = [];
     Object.keys(componentDeps).map(key => {
       const dynamicClass = componentDeps[key];
-      deps.push(eval("key : dynamicClass"));
+      try {
+        deps.push(this.appRef._injector.get(dynamicClass));
+      } catch(e) {
+        console.log(e);
+      }
     });
 
     return deps;
