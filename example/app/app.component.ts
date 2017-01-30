@@ -50,7 +50,9 @@ export class TestComponent {
 })
 export class AppComponent {
   private testComponent = TestComponent;
-  private componentDeps = [ViewContainerRef];
+  private componentDeps = {
+    vcRef: ViewContainerRef,
+  };
   private template1 = `<p (click)="clicked()">the new template1{{someValue}}</p>`;
   private template2 = `<p (click)="clicked()">the newer template</p>`;
 

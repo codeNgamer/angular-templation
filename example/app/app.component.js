@@ -41,7 +41,9 @@ var AppComponent = (function () {
     function AppComponent(injector) {
         this.injector = injector;
         this.testComponent = TestComponent;
-        this.componentDeps = [core_1.ViewContainerRef];
+        this.componentDeps = {
+            vcRef: core_1.ViewContainerRef,
+        };
         this.template1 = "<p (click)=\"clicked()\">the new template1{{someValue}}</p>";
         this.template2 = "<p (click)=\"clicked()\">the newer template</p>";
     }

@@ -21,7 +21,7 @@ export class TemplationComponent {
   @Input() imports: [];
   @Input() template: string;
   @Input() component: any;
-  @Input() componentDeps: [];
+  @Input() componentDeps: any;
   constructor(
     private vr: ViewContainerRef,
     private cfr: ComponentFactoryResolver,
@@ -61,8 +61,18 @@ export class TemplationComponent {
     });
   }
 
+  composeDeps(componentDeps) {
+    const deps = [];
+    Object.keys(componentDeps).map(key => {
+      const dynamicClass = componentDeps[key];
+      deps.push(eval("key : dynamicClass"));
+    });
+
+    return deps;
+  }
+
   returnTemplatedComponent() {
-    const deps = this.componentDeps;
+    const deps = this.composeDeps(this.componentDeps);
 
     const componentMeta = { 
       selector: 'templatedComponent',
