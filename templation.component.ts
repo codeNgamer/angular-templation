@@ -3,6 +3,7 @@ import {
   NgModule,
   ComponentFactoryResolver,
   Input,
+  ApplicationRef,
   Injector,
   ReflectiveInjector,
   ComponentRef,
@@ -18,13 +19,14 @@ import { CommonModule }   from '@angular/common';
 })
 export class TemplationComponent {
   @Input() imports: [];
-  @Input() providers: [];
   @Input() template: string;
   @Input() component: any;
+  @Input() componentDeps: [];
   constructor(
     private vr: ViewContainerRef,
     private cfr: ComponentFactoryResolver,
-    private compiler: Compiler 
+    private compiler: Compiler, 
+    private appRef: ApplicationRef,
   ) { }
 
   ngOnInit() {
@@ -60,11 +62,7 @@ export class TemplationComponent {
   }
 
   returnTemplatedComponent() {
-    const componentDeps = this.getDeps(this.component);
-    const deps = [];
-    const componentInjector = ReflectiveInjector.resolveAndCreate([this.component, ...this.providers]);
-    const componentInstance = componentInjector.get(this.component);
-    componentDeps.map(dep => deps.push(componentInstance[dep]))
+    const deps = this.componentDeps;
 
     const componentMeta = { 
       selector: 'templatedComponent',
@@ -73,7 +71,9 @@ export class TemplationComponent {
 
     @Component(componentMeta)
     class TemplatedComponent extends this.component {
-      constructor() { super(...deps)}
+      constructor() {
+        super(...deps);
+      }
     }
 
     return TemplatedComponent;
@@ -81,11 +81,10 @@ export class TemplationComponent {
 
   returnTemplationModule({ templatedComponent }) {
     const dynamicImports = this.imports;
-    const dynamicProviders = this.providers;
 
     @NgModule({ 
       imports: dynamicImports,
-      providers: dynamicProviders,
+      entryComponents: [templatedComponent],
       declarations: [templatedComponent]
     })
     class TemplationModule {}

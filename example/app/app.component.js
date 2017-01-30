@@ -14,6 +14,7 @@ var TestComponent = (function () {
         this.vcRef = vcRef;
         this.hostprop = 'clicked it';
         this.someValue = 1;
+        console.log('pc');
         console.log(this.vcRef);
     }
     TestComponent.prototype.clicked = function () {
@@ -37,18 +38,19 @@ var TestComponent = (function () {
 }());
 exports.TestComponent = TestComponent;
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(injector) {
+        this.injector = injector;
         this.testComponent = TestComponent;
-        this.componentProviders = [core_1.ViewContainerRef];
+        this.componentDeps = [core_1.ViewContainerRef];
         this.template1 = "<p (click)=\"clicked()\">the new template1{{someValue}}</p>";
         this.template2 = "<p (click)=\"clicked()\">the newer template</p>";
     }
     AppComponent = __decorate([
         core_1.Component({
             selector: 'app',
-            template: "<div>\n  <templation [component]=\"testComponent\" [providers]=\"componentProviders\" [template]=\"template1\" ></templation>\n  <templation [component]=\"testComponent\" [providers]=\"componentProviders\" [template]=\"template2\" ></templation>\n  </div>"
+            template: "<div>\n  <templation [component]=\"testComponent\" [componentDeps]=\"componentDeps\" [template]=\"template1\" ></templation>\n  <templation [component]=\"testComponent\" [componentDeps]=\"componentDeps\" [template]=\"template2\" ></templation>\n  </div>"
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [core_1.Injector])
     ], AppComponent);
     return AppComponent;
 }());

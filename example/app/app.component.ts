@@ -2,6 +2,8 @@ import {
   Directive,
   ElementRef,
   Input,
+  Injector,
+  ApplicationRef,
   ViewContainerRef,
   ComponentRef,
   Component,
@@ -22,6 +24,7 @@ export class TestComponent {
   constructor(
     private vcRef: ViewContainerRef,
   ) {
+    console.log('pc');
     console.log(this.vcRef);
   }
 
@@ -41,13 +44,19 @@ export class TestComponent {
 @Component({
   selector: 'app',
   template: `<div>
-  <templation [component]="testComponent" [providers]="componentProviders" [template]="template1" ></templation>
-  <templation [component]="testComponent" [providers]="componentProviders" [template]="template2" ></templation>
+  <templation [component]="testComponent" [componentDeps]="componentDeps" [template]="template1" ></templation>
+  <templation [component]="testComponent" [componentDeps]="componentDeps" [template]="template2" ></templation>
   </div>` 
 })
 export class AppComponent {
   private testComponent = TestComponent;
-  private componentProviders = [ViewContainerRef];
+  private componentDeps = [ViewContainerRef];
   private template1 = `<p (click)="clicked()">the new template1{{someValue}}</p>`;
   private template2 = `<p (click)="clicked()">the newer template</p>`;
+
+  constructor(
+    private injector: Injector,
+  ) {
+  }
+
 }
